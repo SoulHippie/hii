@@ -1,0 +1,188 @@
+* {
+	box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+}
+
+h1 {
+	font-size: 1.2rem;
+	text-align: center;
+}
+
+html, body {
+	margin: 0;
+	min-height: 100vh;
+}
+
+html {
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+	font-size: 16px;
+	padding: 0;
+}
+
+[class^="column-"] {
+	display: block;
+	text-align: center;
+}
+
+.column-33 {
+	width: 100%;
+	text-align: center;
+}
+
+.column-25 {
+	width: 25%;
+}
+
+.label {
+	font-size: 0.7rem;
+	color: #000000;
+}
+
+body {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+header {
+	padding: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+.btn {
+	border: 0;
+	color: black;
+	cursor: pointer;
+	text-align: center;
+	height: 4rem;
+	background-color: transparent;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: auto 50%;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+}
+
+.btn svg * {
+	transition: fill 0.5s ease-out 0s;
+}
+
+.btn--hide {
+	display: none;
+}
+
+.btn--hide.show {
+	display: inline-block;
+}
+
+.btn:active {
+	background-color: rgba(127, 127, 127, 0.5);
+}
+
+.btn__icon {
+	height: 50%;
+	width: 100%;
+}
+
+.btn__icon--active {
+	display: none;
+}
+
+.btn__icon--inactive {
+	display: block;
+}
+
+.btn.active .btn__icon--active {
+	display: block;
+}
+
+.btn.active .btn__icon--inactive {
+	display: none;
+}
+
+.status {
+	text-align: center;
+	position: relative;
+}
+
+.position {
+	padding-bottom: 0.5rem;
+	text-transform: uppercase;
+	text-align: center;
+	color: black;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.popup.popup--show {
+	display: block;
+}
+
+.popup__content {
+	max-width: 700px;
+	margin: 0 auto;
+	background-color: white;
+	color: black;
+}
+
+.popup__contents {
+	padding: 1rem;
+}
+
+.popup__inner--hide {
+	display: none;
+}
+
+.popup__close {
+	display: block;
+	padding: 1rem;
+	text-align: right;
+	width: 100%;
+	border: 0;
+	background: transparent;
+	outline: none;
+}
+
+.popup__close:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#compass {
+	max-height: 90vh;
+	max-width: 500px;
+	padding-bottom: 30px;
+}
+
+#major-marks-group line, #minor-marks-group line, #angle-texts-group text, #direction-texts-group text, #dial {
+	transform-origin: center;
+}
+
+#major-marks-group line, #minor-marks-group line {
+	stroke: black;
+}
+
+#angle-texts-group text {
+	font-size: 10px;
+}
+
+#direction-texts-group text {
+	font-size: 15px;
+}

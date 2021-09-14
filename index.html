@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <svg id="compass" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 300 300">
+    <defs>
+      <line id="major-mark-template" x1="150" y1="15" x2="150" y2="30" />
+      <line id="minor-mark-template" x1="150" y1="20" x2="150" y2="30" />
+      <text id="angle-text-template" x="150" y="12" text-anchor="middle"></text>
+      <text id="direction-text-template" x="150" y="47" text-anchor="middle"></text>
+    </defs>
+    <g id="dial">
+      <g id="major-marks-group"></g>
+      <g id="minor-marks-group"></g>
+      <g id="angle-texts-group"></g>
+      <g id="direction-texts-group"></g>
+      <polygon points="146,30 150,35 154,30" />
+      <polygon points="270,146 265,150 270,154" />
+      <polygon points="146,270 150,265 154,270" />
+      <polygon points="30,146 35,150 30,154" />
+    </g>
+    <circle cx="150" cy="150" r="120" style="fill: none; stroke: black;" />
+
+    <g id="needle">
+      <polyline points="150,53 165,150 135,150" style="fill: #d3302e;" />
+      <polyline points="150,53 150,150 135,150" style="fill: #bf3030;" />
+      <polyline points="165,150 150,247 135,150" style="fill: #dfdfdf;" />
+      <polyline points="135,150 150,150 150,247" style="fill: #cccccc;" />
+      <circle cx="150" cy="150" r="10" style="fill: #dddddd; stroke: black;" />
+      <circle cx="150" cy="150" r="3" style="fill: black;" />
+    </g>
+  </svg>
+  <div class='status'>
+    <div id='debug-orientation-default'></div>
+    <div id='debug-orientation'></div>
+    <div class='position row'>
+      <div class='column-33'>
+        <div class='label'>Direction in °</div>
+        <div id='position-hng'>n/a</div>
+      </div>
+      <div class='column-33'>
+        <div class='label'>Latitude</div>
+        <div id='position-lat'>&#8943;</div>
+      </div>
+      <div class='column-33'>
+        <div class='label'>Longitude</div>
+        <div id='position-lng'>&#8943;</div>
+      </div>
+      <div class='column-33'>
+        <div class='label'>Velocity</div>
+        <div id='velocity-view'>&#8943;</div>
+      </div>
+    </div>
+
+    <div class="options row">
+      <button id="btn-map" class="btn options__btn column-33" type="button">
+        <svg alt="map" class="btn__icon btn__icon--inactive" version="1.1" x="0px" y="0px" <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="700.000000pt" height="700.000000pt" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+            <path d="M3200 6934 c-401 -51 -755 -182 -1080 -399 -476 -318 -827 -781 -999
+-1316 -64 -200 -96 -369 -113 -592 -21 -283 16 -523 135 -872 277 -810 1036
+-2080 2074 -3473 159 -213 182 -232 273 -232 92 0 115 20 273 233 1051 1413
+1784 2639 2072 3467 135 388 170 661 129 1010 -24 211 -58 357 -126 550 -286
+805 -987 1416 -1823 1589 -248 51 -581 65 -815 35z m446 -564 c399 -32 781
+-185 1074 -429 385 -320 636 -782 689 -1263 70 -633 -166 -1254 -634 -1670
+-373 -332 -854 -504 -1350 -485 -478 19 -911 203 -1254 532 -484 464 -688
+1130 -550 1795 108 524 464 1010 930 1273 256 144 528 228 799 247 159 11 158
+11 296 0z"></path>
+            <path d="M3285 5510 c-229 -47 -410 -150 -580 -332 -128 -136 -208 -285 -256
+-478 -32 -132 -33 -363 -2 -490 115 -459 477 -776 950 -831 175 -20 387 16
+559 96 251 115 458 341 557 607 47 125 62 213 61 373 0 165 -20 273 -75 409
+-112 275 -377 523 -659 614 -163 53 -388 66 -555 32z"></path>
+          </g>
+        </svg>
+      </button>
+      <button id="btn-info" class="btn btn-popup options__btn column-33" type="button" data-name='info'>
+        <svg alt="info" class="btn__icon btn__icon--inactive" version="1.1" x="0px" y="0px" <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="700.000000pt" height="700.000000pt" viewBox="0 0 700.000000 700.000000" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+            <path d="M3245 6994 c-320 -33 -546 -76 -785 -151 -835 -261 -1545 -828 -1995
+-1596 -110 -190 -238 -480 -300 -682 -15 -49 -31 -101 -36 -115 -27 -80 -83
+-358 -106 -535 -26 -198 -25 -633 0 -830 36 -273 79 -459 163 -713 250 -751
+774 -1407 1482 -1855 260 -165 677 -341 972 -411 347 -83 500 -100 860 -100
+253 0 317 3 452 22 576 83 1050 263 1508 573 188 128 325 242 511 428 437 438
+708 892 892 1496 42 137 88 363 114 560 25 197 26 632 0 830 -23 177 -79 455
+-106 535 -5 14 -21 66 -36 115 -115 377 -329 777 -601 1120 -112 141 -408 437
+-549 549 -512 405 -1069 643 -1725 737 -109 15 -210 21 -410 24 -146 1 -283 1
+-305 -1z m709 -1360 c89 -23 172 -71 240 -139 102 -103 146 -206 146 -347 0
+-216 -135 -389 -370 -470 -77 -27 -235 -27 -316 0 -137 45 -255 134 -313 235
+-116 205 -65 467 119 615 136 108 326 149 494 106z m-424 -1459 c159 -34 304
+-129 375 -245 66 -109 78 -158 78 -315 -1 -192 -19 -289 -122 -655 -212 -749
+-215 -764 -216 -935 0 -120 2 -133 25 -175 20 -35 38 -51 85 -75 57 -28 66
+-30 180 -30 106 1 133 5 228 34 60 18 111 30 114 27 7 -6 -44 -217 -54 -227
+-16 -15 -434 -168 -520 -190 -76 -20 -112 -23 -263 -23 -129 0 -193 5 -242 17
+-195 48 -338 153 -406 298 -47 101 -56 154 -49 313 9 205 20 254 243 1033 71
+248 96 383 97 508 1 121 -12 167 -60 217 -32 33 -65 45 -160 57 -93 12 -199
+-1 -316 -39 -50 -16 -93 -28 -94 -26 -6 6 51 221 61 232 30 32 454 176 599
+204 120 23 296 21 417 -5z"></path>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="popup" class="popup">
+    <div id="popup-content" class="popup__content">
+      <div id="popup-contents" class="popup__contents">
+        <div id="popup-inner-info" class="popup__inner popup__inner--hide">
+          <p>
+            info popup
+          </p>
+        </div>
+        <div id="popup-inner-noorientation" class="popup__inner popup__inner--hide">
+          <p>
+            This browser doesn't support device orientation.
+          </p>
+        </div>
+      </div>
+      <button id="popup-close" class="popup__close" href='#'>Close</button>
+    </div>
+  </div>
+</body>
+
+</html>
